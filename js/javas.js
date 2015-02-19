@@ -5,10 +5,17 @@
         });
         $("#Grid").mixitup();
         
-        $('.not-ready').click(function(e) {
-            e.preventDefault();
-            var $this = $(this);
-            $this.toggleClass("hover");
-        });
+        $(".project .details").each(function() {
+            var that = $(this);
+            var newDetails = $("<div class='details'><a href='#'><i class='fa fa-chain'></i></a></div>");
+            $("a", newDetails).click(function() {
+                alert("this is where a popup would happen");
+            });
+            that.before(newDetails);
+            that.addClass('details-modal-data').removeClass('details').hide();
+        })
+
+
+
     });
 })(jQuery);
