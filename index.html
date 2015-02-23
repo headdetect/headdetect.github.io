@@ -18,14 +18,11 @@
 </head>
 
 <body class="clearfix">
-    <span class="name">
-        <span id="navbar-collapse-under" class="fa fa-bars"></span> brayden lopez
-    </span>
-    <nav class="navbar opened" id="sidebar">
-        <span id="navbar-collapse-over" class="fa fa-bars"> </span>
+    <div class="modal-background" style="opacity:0; display:none"></div>
+    <nav class="navbar" id="sidebar">
         <ul class="nav-items">
             <li><a href="#"><i class="fa fa-fire"></i> Portfolio</a></li>
-            <li><a href="http://mrlopez.me/blog"><i class="fa fa-newspaper-o"></i> Blog</a></li>
+            <li><a href="/blog"><i class="fa fa-newspaper-o"></i> Blog</a></li>
             <li><a href="#"><i class="fa fa-heart-o"></i> Freebies</a></li>
             <li><a href="#"><i class="fa fa-envelope-o"></i> Contact</a></li>
         </ul>
@@ -42,95 +39,101 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="logo">
-            <span class="fa fa-fire icon"></span>
-        </div>
-        <div class="projects">
-            <ul class="filters">
-                <li class="filter" data-filter="all">All</li>
-                <li class="filter" data-filter="desktop">Desktop</li>
-                <li class="filter" data-filter="mobile">Mobile</li>
-                <li class="filter" data-filter="web">Web</li>
-                <li class="filter" data-filter="misc">Misc</li>
-            </ul>
+    <div class="navbar-wrapper">
+        <span id="navbar-button" class="fa fa-bars"></span>
+        <span class="name"> brayden lopez </span>
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="logo">
+                <span class="fa fa-meh-o icon"></span>
+            </div>
+            <div class="projects">
+                <ul class="filters">
+                    <li class="filter" data-filter="all">All</li>
+                    <li class="filter" data-filter="desktop">Desktop</li>
+                    <li class="filter" data-filter="mobile">Mobile</li>
+                    <li class="filter" data-filter="web">Web</li>
+                    <li class="filter" data-filter="misc">Misc</li>
+                </ul>
 
-            <ul id="Grid" class="row">
-                <li class="column-one-third mix web mobile desktop">
-                    <div class="project">
-                        <img src="/img/csd.jpg" alt="Canyons School District" />
-                        <div class="details">
-                            <h3>Canyons School District</h3>
-                            <p>Where I used to work until 2014. Many of the works I did were internal <i>stuff</i></p>
-                            <div class="links">
-                                <a href="http://www.canyonsdistrict.org">Visit site <i class="fa fa-hand-o-right"></i></a>
+                <ul id="Grid" class="row">
+                    <li class="column-one-third mix web desktop">
+                        <div class="project">
+                            <img src="/img/csd.jpg" alt="Canyons School District" />
+                            <div class="details">
+                                <h1>Canyons School District</h1>
+                                <p>Where I used to work until 2014. Many of the works I did were internal <i>stuff</i></p>
+                                <div class="links clearfix">
+                                    <a href="http://www.canyonsdistrict.org">Visit site <i class="fa fa-hand-o-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="column-one-third mix web">
-                    <div class="project">
-                        <img src="/img/twinklemepretty.jpg" alt="Twinkle Me Pretty" />
-                        <div class="details">
-                            <h3>Twinkle Me Pretty</h3>
-                            <p>A full e-commerce website I made for my one of my family members. Started back in 2011-ish, still kicking in 2015.</p>
-                            <div class="links">
-                                <a href="https://twinklemepretty.com">See Website <i class="fa fa-hand-o-right"></i></a>
+                    </li>
+                    <li class="column-one-third mix web">
+                        <div class="project">
+                            <img src="/img/twinklemepretty.jpg" alt="Twinkle Me Pretty" />
+                            <div class="details">
+                                <h1>Twinkle Me Pretty</h1>
+                                <p>A full e-commerce website I made for my one of my family members. Started back in 2011-ish, still kicking in 2015.</p>
+                                <div class="links clearfix">
+                                    <a href="https://twinklemepretty.com">See Website <i class="fa fa-hand-o-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="column-one-third mix mobile misc">
-                    <div class="project">
-                        <img src="/img/ashlund.jpg" alt="Ashlund Jade" />
-                        <div class="details">
-                            <h3>Ashlund Jade</h3>
-                            <p>Coming soon. 2015!</p>
-                            <div class="links">
-                                <a href="#">Coming Soon</a>
+                    </li>
+                    <li class="column-one-third mix web">
+                        <div class="project">
+                            <img src="/img/ashlund.jpg" alt="Ashlund Jade" />
+                            <div class="details">
+                                <h1>Ashlund Jade</h1>
+                                <p>Coming soon. 2015!</p>
+                                <div class="links clearfix">
+                                    <a href="#">Coming Soon</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="column-one-third mix desktop web misc">
-                    <div class="project">
-                        <img src="/img/canvas.jpg" alt="Instructure, Inc" />
-                        <div class="details">
-                            <h3>Instructure, Inc</h3>
-                            <p>This is where I currently work as of Feb, 2015. I work on the main product: Canvas</p>
-                            <div class="links">
-                                <a href="https://github.com/instructure/canvas-lms"><i class="fa fa-github"></i> Github</a>
-                                <a href="https://www.instructure.com">See Website <i class="fa fa-hand-o-right"></i></a>
+                    </li>
+                    <li class="column-one-third mix desktop web">
+                        <div class="project">
+                            <img src="/img/canvas.jpg" alt="Instructure, Inc" />
+                            <div class="details">
+                                <h1>Instructure, Inc</h1>
+                                <img src="/img/canvas.jpg" alt="Instructure, Inc" />
+                                <p>This is where I currently work as of Feb, 2015. I work on the main product: Canvas</p>
+                                <div class="links clearfix">
+                                    <a href="https://github.com/instructure/canvas-lms"><i class="fa fa-github"></i> Github</a>
+                                    <a href="https://www.instructure.com">See Website <i class="fa fa-hand-o-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="column-one-third mix misc">
-                    <div class="project">
-                        <img src="/img/sharpcrush.jpg" alt="" />
-                        <div class="details">
-                            <h3>SharpCrush Library</h3>
-                            <p>A library I made in C# to interact with the <a href="https://mediacru.sh/about">MediaCrush</a> website. It is (was?) currently used in the official desktop application.</p>
-                            <div class="links">
-                                <a href="https://github.com/headdetect/SharpCrush">See Project <i class="fa fa-hand-o-right"></i></a>
+                    </li>
+                    <li class="column-one-third mix misc">
+                        <div class="project">
+                            <img src="/img/sharpcrush.jpg" alt="" />
+                            <div class="details">
+                                <h1>SharpCrush Library</h1>
+                                <p>A library I made in C# to interact with the <a href="https://mediacru.sh/about">MediaCrush</a> website. It is (was?) currently used in the official desktop application.</p>
+                                <div class="links clearfix">
+                                    <a href="https://github.com/headdetect/SharpCrush">See Project <i class="fa fa-hand-o-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-                <li class="column-one-third mix web desktop">
-                    <div class="project">
-                        <img src="/img/bootstats.png" alt="" />
-                        <div class="details">
-                            <h3>Ricky the Butler</h3>
-                            <p>A servant that runs commands incoming from Tasker and other automation applications. It's pretty good on the eyes.</p>
-                            <div class="links">
-                                <a href="https://github.com/headdetect/RickyTheButler">See Project <i class="fa fa-hand-o-right"></i></a>
+                    </li>
+                    <li class="column-one-third mix web desktop mobile">
+                        <div class="project">
+                            <img src="/img/bootstats.png" alt="" />
+                            <div class="details">
+                                <h1>Ricky the Butler</h1>
+                                <p>A servant that runs commands incoming from Tasker and other automation applications. It's pretty good on the eyes too.</p>
+                                <div class="links clearfix">
+                                    <a href="https://github.com/headdetect/RickyTheButler">See Project <i class="fa fa-hand-o-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
-
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
