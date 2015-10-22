@@ -1,3 +1,5 @@
+// Judge me not on this shitty code, judge me on how quickly I made it (In one night. Srsly)
+
 (function ($) {
     $(document).ready(function () {
         var modalBG = $(".modal-background");
@@ -6,7 +8,6 @@
         $("#navbar-button").click(function () {
             $("body").toggleClass("opened");
         });
-        $("#Grid").mixitup();
 
         modalBG.click(function() {
             if (currentModal)
@@ -16,8 +17,9 @@
         
         $(".project .details").each(function() {
             var that = $(this);
-            var newDetails = $("<div class='details'><a href='#'><i class='fa fa-chain'></i></a></div>");
-            var closeButton = $("<a href='#' class='close clearfix'>Close</a>");
+            var title = that.find("h1").text();
+            var newDetails = $("<div class='details'><a href='#'>" +title + "</a></div>");
+            var closeButton = $("<a href='#' class='close-dialog clearfix'>Close</a>");
             $("a", newDetails).click(function(e) {
                 e.preventDefault();
                 that.show();
@@ -33,5 +35,36 @@
             $(".links", that).append(closeButton);
             that.addClass('details-modal-data').removeClass('details').hide();
         });
+
+        $('#name').floatlabel();
+        $('#from').floatlabel();
+        $('#subject').floatlabel();
+        $('#message').floatlabel();
+
+        $("#send-email").click(function(e) {
+            e.preventDefault();
+
+            var name = $('#name').val();
+            var from = $('#from').val();
+            var subject = $('#subject').val();
+            var message = $('#message').val();
+
+            // Save me ECMAScript 6!!! //
+            var payload = {
+                name: name,
+                from: from,
+                subject: subject,
+                text: message
+            };
+
+            $.get("http://email.mrlopez.me/email", payload)
+                .done(function() {
+                    $(".message-success").show();
+                    $('form').find("input[type=text], textarea").val("");
+                })
+                .fail(function() {
+                    $(".message-error").show();
+                })
+        })
     });
 })(jQuery);

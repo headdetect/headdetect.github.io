@@ -1,0 +1,544 @@
+/* Mixins */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  font-family: 'Open Sans', sans-serif;
+  color: white; }
+
+body.opened .sidebar {
+  left: 0; }
+body.opened .wrapper {
+  left: 240px; }
+body.opened .navbar-wrapper {
+  left: 240px; }
+body.opened #navbar-button {
+  color: white; }
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  -webkit-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -webkit-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975); }
+
+#intro {
+  background: url("../img/background.jpg"); }
+
+#intro-smaller {
+  background: url("../img/background.jpg"); }
+  #intro-smaller .logo {
+    padding: 100px 0 150px 0; }
+
+section {
+  margin-bottom: 40px; }
+
+.navbar-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+  color: white;
+  font-size: 2em;
+  padding: 20px;
+  background: transparent;
+  left: 0;
+  z-index: 98;
+  -webkit-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -webkit-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975); }
+  .navbar-wrapper #navbar-button {
+    cursor: pointer;
+    position: fixed;
+    padding: 5px; }
+    .navbar-wrapper #navbar-button:hover {
+      color: #ccc; }
+
+.modal-background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: black;
+  z-index: 99;
+  transition: opacity 0.4s ease-in-out; }
+
+.logo {
+  text-align: center;
+  padding: 200px 0 350px 0;
+  color: white; }
+  .logo h1.tagline {
+    font-size: 4em;
+    font-weight: 300; }
+  .logo .icon {
+    font-size: 10em;
+    display: block;
+    padding-bottom: 30px; }
+
+.title {
+  text-align: center;
+  padding: 30px 0 70px 0;
+  font-weight: 700;
+  color: white; }
+  .title span {
+    padding: 15px 22px;
+    border-bottom: 3px solid white; }
+
+.projects li {
+  list-style: none; }
+.projects .project {
+  height: 100%;
+  width: 100%;
+  position: relative; }
+  .projects .project:hover .details {
+    opacity: 1;
+    cursor: pointer; }
+  .projects .project .details-modal-data {
+    width: 40%;
+    min-width: 350px;
+    height: auto;
+    z-index: 100;
+    background: #34343e;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    color: white;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%); }
+    .projects .project .details-modal-data h1 {
+      display: block;
+      width: 100%;
+      color: white;
+      font-size: 2em;
+      padding: 15px 0;
+      margin: 0;
+      background: #1d1d22;
+      font-weight: 300;
+      text-align: center; }
+      .projects .project .details-modal-data h1 .caption {
+        padding-bottom: 10px;
+        border-bottom: 2px solid white; }
+    .projects .project .details-modal-data .content {
+      width: 70%;
+      margin: 20px auto; }
+      .projects .project .details-modal-data .content a {
+        color: white;
+        text-decoration: underline; }
+      .projects .project .details-modal-data .content ul li {
+        list-style: circle; }
+    .projects .project .details-modal-data .links {
+      padding: 20px;
+      width: 100%; }
+      .projects .project .details-modal-data .links a {
+        float: left;
+        padding-bottom: 10px;
+        color: white;
+        border-bottom: 2px solid white;
+        text-decoration: none;
+        margin: 0 8px; }
+        .projects .project .details-modal-data .links a.close-dialog {
+          float: right;
+          border: none; }
+        .projects .project .details-modal-data .links a:hover {
+          text-decoration: underline; }
+    .projects .project .details-modal-data p {
+      padding: 20px;
+      font-size: 1em; }
+    .projects .project .details-modal-data img {
+      width: 100%;
+      height: auto; }
+  .projects .project img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .projects .project .details {
+    position: absolute;
+    line-height: 220px;
+    z-index: 90;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out; }
+    .projects .project .details a {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      text-align: center;
+      color: #34343e;
+      text-decoration: none;
+      font-weight: 100;
+      font-size: 1.4em; }
+
+.sidebar {
+  background: #34343e;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 98;
+  left: -240px;
+  -webkit-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
+  -webkit-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -moz-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  -o-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
+  transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975); }
+  .sidebar .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%; }
+    .sidebar .footer p {
+      color: #7b7b90;
+      text-align: center; }
+  .sidebar ul.socials {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    padding: 0;
+    width: 100%; }
+    .sidebar ul.socials li {
+      display: inline-block;
+      list-style: none;
+      position: relative;
+      padding: 15px; }
+      .sidebar ul.socials li a {
+        color: #7b7b90;
+        text-decoration: none;
+        font-size: 1.6em; }
+        .sidebar ul.socials li a:hover {
+          color: white; }
+  .sidebar ul.nav-items {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0; }
+    .sidebar ul.nav-items li {
+      display: block;
+      list-style: none;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      letter-spacing: 1px; }
+      .sidebar ul.nav-items li a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+        font-size: 1.3em;
+        padding: 20px; }
+        .sidebar ul.nav-items li a i {
+          display: inline-block;
+          width: 50px; }
+      .sidebar ul.nav-items li:active, .sidebar ul.nav-items li:hover, .sidebar ul.nav-items li.active {
+        background: #1d1d22; }
+
+.row {
+  margin-bottom: 30px; }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.form-content input.form-control,
+.form-content textarea.form-control {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-bottom: 2px solid white;
+  border-radius: 0;
+  padding: 10px;
+  color: white;
+  padding-top: 32px !important; }
+.form-content .form-control:focus,
+.form-content .form-control:hover,
+.form-content .form-control:active,
+.form-content .form-control.focus,
+.form-content .form-control.active {
+  border-color: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid white; }
+.form-content .btn {
+  background: transparent;
+  border-radius: 0;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px; }
+  .form-content .btn:hover, .form-content .btn:focus, .form-content .btn:active {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    text-decoration: underline; }
+
+.highlight .hll {
+  background-color: #ffc; }
+
+.highlight .c {
+  color: #999; }
+
+/* Comment */
+.highlight .err {
+  color: #a00;
+  background-color: #faa; }
+
+/* Error */
+.highlight .k {
+  color: #069; }
+
+/* Keyword */
+.highlight .o {
+  color: #555; }
+
+/* Operator */
+.highlight .cm {
+  color: #09f;
+  font-style: italic; }
+
+/* Comment.Multiline */
+.highlight .cp {
+  color: #099; }
+
+/* Comment.Preproc */
+.highlight .c1 {
+  color: #999; }
+
+/* Comment.Single */
+.highlight .cs {
+  color: #999; }
+
+/* Comment.Special */
+.highlight .gd {
+  background-color: #fcc;
+  border: 1px solid #c00; }
+
+/* Generic.Deleted */
+.highlight .ge {
+  font-style: italic; }
+
+/* Generic.Emph */
+.highlight .gr {
+  color: #f00; }
+
+/* Generic.Error */
+.highlight .gh {
+  color: #030; }
+
+/* Generic.Heading */
+.highlight .gi {
+  background-color: #cfc;
+  border: 1px solid #0c0; }
+
+/* Generic.Inserted */
+.highlight .go {
+  color: #aaa; }
+
+/* Generic.Output */
+.highlight .gp {
+  color: #009; }
+
+/* Generic.Prompt */
+/* Generic.Strong */
+.highlight .gu {
+  color: #030; }
+
+/* Generic.Subheading */
+.highlight .gt {
+  color: #9c6; }
+
+/* Generic.Traceback */
+.highlight .kc {
+  color: #069; }
+
+/* Keyword.Constant */
+.highlight .kd {
+  color: #069; }
+
+/* Keyword.Declaration */
+.highlight .kn {
+  color: #069; }
+
+/* Keyword.Namespace */
+.highlight .kp {
+  color: #069; }
+
+/* Keyword.Pseudo */
+.highlight .kr {
+  color: #069; }
+
+/* Keyword.Reserved */
+.highlight .kt {
+  color: #078; }
+
+/* Keyword.Type */
+.highlight .m {
+  color: #f60; }
+
+/* Literal.Number */
+.highlight .s {
+  color: #d44950; }
+
+/* Literal.String */
+.highlight .na {
+  color: #4f9fcf; }
+
+/* Name.Attribute */
+.highlight .nb {
+  color: #366; }
+
+/* Name.Builtin */
+.highlight .nc {
+  color: #0a8; }
+
+/* Name.Class */
+.highlight .no {
+  color: #360; }
+
+/* Name.Constant */
+.highlight .nd {
+  color: #99f; }
+
+/* Name.Decorator */
+.highlight .ni {
+  color: #999; }
+
+/* Name.Entity */
+.highlight .ne {
+  color: #c00; }
+
+/* Name.Exception */
+.highlight .nf {
+  color: #c0f; }
+
+/* Name.Function */
+.highlight .nl {
+  color: #99f; }
+
+/* Name.Label */
+.highlight .nn {
+  color: #0cf; }
+
+/* Name.Namespace */
+.highlight .nt {
+  color: #2f6f9f; }
+
+/* Name.Tag */
+.highlight .nv {
+  color: #033; }
+
+/* Name.Variable */
+.highlight .ow {
+  color: #000; }
+
+/* Operator.Word */
+.highlight .w {
+  color: #bbb; }
+
+/* Text.Whitespace */
+.highlight .mf {
+  color: #f60; }
+
+/* Literal.Number.Float */
+.highlight .mh {
+  color: #f60; }
+
+/* Literal.Number.Hex */
+.highlight .mi {
+  color: #f60; }
+
+/* Literal.Number.Integer */
+.highlight .mo {
+  color: #f60; }
+
+/* Literal.Number.Oct */
+.highlight .sb {
+  color: #c30; }
+
+/* Literal.String.Backtick */
+.highlight .sc {
+  color: #c30; }
+
+/* Literal.String.Char */
+.highlight .sd {
+  color: #c30;
+  font-style: italic; }
+
+/* Literal.String.Doc */
+.highlight .s2 {
+  color: #c30; }
+
+/* Literal.String.Double */
+.highlight .se {
+  color: #c30; }
+
+/* Literal.String.Escape */
+.highlight .sh {
+  color: #c30; }
+
+/* Literal.String.Heredoc */
+.highlight .si {
+  color: #a00; }
+
+/* Literal.String.Interpol */
+.highlight .sx {
+  color: #c30; }
+
+/* Literal.String.Other */
+.highlight .sr {
+  color: #3aa; }
+
+/* Literal.String.Regex */
+.highlight .s1 {
+  color: #c30; }
+
+/* Literal.String.Single */
+.highlight .ss {
+  color: #fc3; }
+
+/* Literal.String.Symbol */
+.highlight .bp {
+  color: #366; }
+
+/* Name.Builtin.Pseudo */
+.highlight .vc {
+  color: #033; }
+
+/* Name.Variable.Class */
+.highlight .vg {
+  color: #033; }
+
+/* Name.Variable.Global */
+.highlight .vi {
+  color: #033; }
+
+/* Name.Variable.Instance */
+.highlight .il {
+  color: #f60; }
+
+/* Literal.Number.Integer.Long */
+.css .o,
+.css .o + .nt,
+.css .nt + .nt {
+  color: #999; }
+
+/*# sourceMappingURL=styles.css.map */

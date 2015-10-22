@@ -1,0 +1,412 @@
+@import "variables";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+}
+
+body.opened {
+  .sidebar {
+    left: 0;
+  }
+
+  .wrapper {
+    left: 240px;
+  }
+
+  .navbar-wrapper {
+    left: 240px;
+  }
+
+  #navbar-button {
+    color: white;
+  }
+}
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  left: 0;
+
+  top: 0;
+
+  @include transition(left 500ms cubic-bezier(0.000, 0.690, 0.380, 0.975));
+  @include transition-timing(cubic-bezier(0.000, 0.690, 0.380, 0.975));
+}
+
+#intro {
+  background: url('../img/background.jpg');
+}
+
+#intro-smaller {
+  .logo {
+    padding: 100px 0 150px 0;
+  }
+  background: url('../img/background.jpg');
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+.navbar-wrapper {
+  margin: 0 auto;
+  width: 100%;
+  position: fixed;
+
+  color: white;
+  font-size: 2em;
+  padding: 20px;
+  background: transparent;
+
+  left: 0;
+  z-index: 98;
+
+  @include transition(left 500ms cubic-bezier(0.000, 0.690, 0.380, 0.975));
+  @include transition-timing(cubic-bezier(0.000, 0.690, 0.380, 0.975));
+
+  #navbar-button {
+    cursor: pointer;
+    position: fixed;
+    padding: 5px;
+
+    &:hover {
+      color: #ccc;
+    }
+  }
+}
+
+.modal-background {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: black;
+  z-index: 99;
+
+  transition: opacity 0.4s ease-in-out;
+}
+
+.logo {
+  text-align: center;
+  padding: 200px 0 350px 0;
+  color: white;
+
+  h1.tagline {
+    font-size: 4em;
+    font-weight: 300;
+  }
+
+  .icon {
+    font-size: 10em;
+    display: block;
+    padding-bottom: 30px;
+  }
+
+}
+
+.title {
+  text-align: center;
+  padding: 30px 0 70px 0;
+  font-weight: 700;
+  color: white;
+
+  span {
+    padding: 15px 22px;
+    border-bottom: 3px solid white;
+  }
+}
+
+.projects {
+
+  li {
+    list-style: none;
+  }
+
+  .project {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    &:hover {
+      .details {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    .details-modal-data {
+      width: 40%;
+      min-width: 350px;
+      height: auto;
+
+      z-index: 100;
+      background: $blue;
+
+      position: fixed;
+      left: 50%;
+      top: 50%;
+
+      color: white;
+
+      @include transform(translateX(-50%) translateY(-50%));
+
+      h1 {
+        display: block;
+        width: 100%;
+        color: white;
+        font-size: 2em;
+        padding: 15px 0;
+        margin: 0;
+
+        background: $darkBlue;
+        font-weight: 300;
+
+        text-align: center;
+
+        .caption {
+          padding-bottom: 10px;
+          border-bottom: 2px solid white;
+        }
+
+      }
+
+      .content {
+        width: 70%;
+        margin: 20px auto;
+
+        a {
+          color: white;
+          text-decoration: underline;
+        }
+        ul li {
+          list-style: circle;
+        }
+      }
+
+
+      .links {
+        padding: 20px;
+        width: 100%;
+
+        a {
+          float: left;
+          padding-bottom: 10px;
+          color: white;
+          border-bottom: 2px solid white;
+          text-decoration: none;
+          margin: 0 8px;
+
+          &.close-dialog {
+            float: right;
+            border: none;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      p {
+        padding: 20px;
+        font-size: 1em;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+    }
+
+    img {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .details {
+      position: absolute;
+      line-height: 220px; // height
+
+      z-index: 90;
+
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background: white;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+
+      a {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+
+        text-align: center;
+
+        color: $blue;
+        text-decoration: none;
+        font-weight: 100;
+        font-size: 1.4em;
+      }
+    }
+  }
+}
+
+.sidebar {
+  background: $blue;
+  position: fixed;
+  width: 240px;
+  height: 100%;
+  top: 0;
+  z-index: 98;
+
+  left: -240px;
+
+  @include transition(left 500ms cubic-bezier(0.000, 0.690, 0.380, 0.975));
+  @include transition-timing(cubic-bezier(0.000, 0.690, 0.380, 0.975));
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    p {
+      color: $lightBlue;
+      text-align: center;
+    }
+
+  }
+  ul.socials {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    li {
+      display: inline-block;
+      list-style: none;
+      position: relative;
+      padding: 15px;
+
+      a {
+        color: $lightBlue;
+        text-decoration: none;
+        font-size: 1.6em;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+  ul.nav-items {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0;
+
+    li {
+      display: block;
+      list-style: none;
+      position: relative;
+      width: 100%;
+
+      overflow: hidden;
+      letter-spacing: 1px;
+
+      a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        width: 100%;
+        font-size: 1.3em;
+        padding: 20px;
+
+        i {
+          display: inline-block;
+          width: 50px;
+        }
+      }
+
+      &:active,
+      &:hover,
+      &.active {
+        background: $darkBlue;
+      }
+
+    }
+  }
+}
+
+.row {
+  margin-bottom: 30px;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+}
+
+// Form stuff //
+
+.form-content {
+
+  input.form-control,
+  textarea.form-control {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 0;
+    padding: 10px;
+    color: white;
+
+    padding-top: 32px !important;
+  }
+
+  .form-control:focus,
+  .form-control:hover,
+  .form-control:active,
+  .form-control.focus,
+  .form-control.active {
+    border-color: transparent;
+    box-shadow: none;
+
+    border-bottom: 2px solid white;
+  }
+
+  .btn {
+    background: transparent;
+    border-radius: 0;
+    border: 1px solid white;
+    color: white;
+
+    padding: 10px 20px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+
+      text-decoration: underline;
+    }
+  }
+}
+
+@import "highlight";
