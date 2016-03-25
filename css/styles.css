@@ -20,8 +20,9 @@ body.opened #navbar-button {
 
 .wrapper {
   position: absolute;
-  width: 100%;
+  height: 100%;
   left: 0;
+  right: 0;
   top: 0;
   -webkit-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
   -moz-transition: left 500ms cubic-bezier(0, 0.69, 0.38, 0.975);
@@ -32,16 +33,16 @@ body.opened #navbar-button {
   -o-transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975);
   transition-timing-function: cubic-bezier(0, 0.69, 0.38, 0.975); }
 
-#intro {
-  background: url("../img/background.jpg"); }
+section#intro {
+  background: url("../img/background.jpg");
+  margin-bottom: 0;
+  height: 100%; }
 
 #intro-smaller {
-  background: url("../img/background.jpg"); }
+  background: url("../img/background.jpg");
+  margin-bottom: 40px; }
   #intro-smaller .logo {
     padding: 100px 0 150px 0; }
-
-section {
-  margin-bottom: 40px; }
 
 .navbar-wrapper {
   margin: 0 auto;
@@ -84,7 +85,7 @@ section {
   color: white; }
   .logo h1.tagline {
     font-size: 4em;
-    font-weight: 300; }
+    font-weight: 100; }
   .logo .icon {
     font-size: 10em;
     display: block;
@@ -93,11 +94,8 @@ section {
 .title {
   text-align: center;
   padding: 30px 0 70px 0;
-  font-weight: 700;
+  font-weight: 300;
   color: white; }
-  .title span {
-    padding: 15px 22px;
-    border-bottom: 3px solid white; }
 
 .projects li {
   list-style: none; }
@@ -187,7 +185,7 @@ section {
       text-align: center;
       color: #34343e;
       text-decoration: none;
-      font-weight: 100;
+      font-weight: 300;
       font-size: 1.4em; }
 
 .sidebar {
@@ -261,35 +259,41 @@ section {
     display: table;
     clear: both; }
 
-.form-content input.form-control,
-.form-content textarea.form-control {
-  background: transparent;
-  box-shadow: none;
-  border: none;
-  border-bottom: 2px solid white;
-  border-radius: 0;
-  padding: 10px;
-  color: white;
-  padding-top: 32px !important; }
-.form-content .form-control:focus,
-.form-content .form-control:hover,
-.form-content .form-control:active,
-.form-content .form-control.focus,
-.form-content .form-control.active {
-  border-color: transparent;
-  box-shadow: none;
-  border-bottom: 2px solid white; }
-.form-content .btn {
-  background: transparent;
-  border-radius: 0;
-  border: 1px solid white;
-  color: white;
-  padding: 10px 20px; }
-  .form-content .btn:hover, .form-content .btn:focus, .form-content .btn:active {
+.form-content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .form-content input.form-control,
+  .form-content textarea.form-control {
+    background: #444;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    min-height: 50px;
+    padding: 10px 0 10px 20px;
+    font-size: 1.2em;
+    color: white; }
+  .form-content .form-control:focus,
+  .form-content .form-control:active,
+  .form-content .form-control.focus,
+  .form-content .form-control.active {
+    border-color: transparent;
+    box-shadow: none;
+    background: #555; }
+  .form-content .btn {
     background: transparent;
+    border-radius: 0;
+    border: 2px solid white;
     color: white;
-    border: 1px solid white;
-    text-decoration: underline; }
+    font-weight: bold;
+    padding: 10px 20px;
+    -webkit-transition: all 200ms linear;
+    -moz-transition: all 200ms linear;
+    -o-transition: all 200ms linear;
+    transition: all 200ms linear; }
+    .form-content .btn:hover, .form-content .btn:focus, .form-content .btn:active {
+      background: white;
+      color: black; }
 
 .highlight .hll {
   background-color: #ffc; }

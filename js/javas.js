@@ -36,11 +36,6 @@
             that.addClass('details-modal-data').removeClass('details').hide();
         });
 
-        $('#name').floatlabel();
-        $('#from').floatlabel();
-        $('#subject').floatlabel();
-        $('#message').floatlabel();
-
         $("#send-email").click(function(e) {
             e.preventDefault();
 
@@ -60,7 +55,7 @@
             $.get("http://email.mrlopez.me/email", payload)
                 .done(function() {
                     $(".message-success").show();
-                    $('form').find("input[type=text], textarea").val("");
+                    $('form').find("input, textarea").val("");
                 })
                 .fail(function() {
                     $(".message-error").show();
