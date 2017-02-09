@@ -52,7 +52,7 @@
                 text: message
             };
 
-            $.get("http://email.mrlopez.me/email", payload)
+            $.post("http://email.mrlopez.me/email", payload)
                 .done(function() {
                     $(".message-success").show();
                     $('form').find("input, textarea").val("");
