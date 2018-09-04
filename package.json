@@ -21,6 +21,7 @@
     "build:images": "imagemin src/images/* -o build/images",
     "build:fontawesome": "mkdir -p build/webfonts/ && cp node_modules/@fortawesome/fontawesome-pro/webfonts/* build/webfonts/",
     "build:bootstrap": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.js build/js/bootstrap.js",
+    "build:particles": "cp node_modules/particlesjs/dist/particles.js build/js/particles.js",
     "watch": "npm-run-all -p watch:* build:fontawesome build:bootstrap",
     "watch:assets": "onchange 'src/assets/' -- npm run build:assets",
     "watch:css": "onchange 'src/scss/' -- npm run build:css",
@@ -45,6 +46,7 @@
     "onchange": "^4.1.0",
     "postcss-cli": "^6.0.0",
     "rimraf": "^2.6.2",
-    "uglify-js": "^3.4.8"
+    "uglify-js": "^3.4.8",
+    "particlesjs": "^2.2.3"
   }
 }
