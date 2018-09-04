@@ -1,8 +1,8 @@
 {
   "siteName": "Brayden Lopez Portfolio",
   "siteRootUrl": "https://mrlopez.me/",
-  "ogImageUrl": "https://example.com/images/og-image.jpg",
+  "ogImageUrl": "https://mrlopez.me/assets/android-chrome-512x512.png",
   "fbAppId": "",
-  "twitterSite": "",
-  "googleAnalyticsId": ""
+  "twitterSite": "@headdetect",
+  "googleAnalyticsId": "UA-37232936-2"
 }
