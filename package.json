@@ -4,8 +4,9 @@
   "description": "Brayden Lopez's Portfolio. UX Developer, DevOps, and Full Stack Developer.",
   "author": "headdetect",
   "license": "MIT",
-  "repository": "git@github.com:headdetect/headdetect.github.com.git",
+  "repository": "git@github.com:headdetect/headdetect.github.io.git",
   "scripts": {
+    "deploy": "rm -rf ../headdetect.github.io-master/* && cp -R build/* ../headdetect.github.io-master/ && cd ../headdetect.github.io-master/ && git checkout master && git add . && git commit -am 'Updating...' && git push origin master",
     "prestart": "npm run build",
     "start": "npm-run-all -p watch server",
     "scss": "node-sass src/scss/style.scss build/css/style.css --output-style compressed --indent-width 4 --source-map build/css/ --importer node_modules/node-sass-globbing/index.js",
