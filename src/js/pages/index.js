@@ -14,7 +14,7 @@ const particles = Particles.init({
       }
     },
     {
-      breakpoint: 375,
+      breakpoint: 425,
       options: {
         maxParticles: 30
       }
