@@ -6,7 +6,7 @@ for (let i = 0; i < a.length; i++) {
     a[i].setAttribute('rel', 'noopener noreferrer');
   }
 }
-debugger;
+
 // Force HTTPS //
 if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
   location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
