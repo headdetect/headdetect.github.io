@@ -1,25 +1,27 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
 
   <meta charset="utf-8">
-  <title><% if (pageId != 'index') { %><%= pageTitle %> - <% } %><%= siteName %></title>
+  <title>Brayden Lopez Portfolio</title>
 
   <meta name="viewport" content="width=device-width">
 
-  <meta property="og:title" content="<%= pageTitle %> - <%= siteName %>" />
-  <meta property="og:description" content="<%= pageDescription %>" />
+  <meta property="og:title" content="About - Brayden Lopez Portfolio" />
+  <meta property="og:description" content="About Brayden Lopez: UX/UI Developer, DevOps, and Full Stack Developer" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="<%= siteRootUrl %><%= pageUrl %>" />
-  <meta property="og:image" content="<%= ogImageUrl %>" />
-  <meta property="og:site_name" content="<%= siteName %>" />
+  <meta property="og:url" content="https://mrlopez.me/" />
+  <meta property="og:image" content="https://example.com/images/og-image.jpg" />
+  <meta property="og:site_name" content="Brayden Lopez Portfolio" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="<%= twitterSite %>">
+  <meta name="twitter:site" content="">
 
   <link rel="stylesheet" href="css/style.css" />
   <link rel="shortcut icon" href="images/favicon.ico" />
-  <link rel="canonical" href="<%= siteRootUrl %><%= pageUrl %>" />
+  <link rel="canonical" href="https://mrlopez.me/" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
@@ -31,13 +33,13 @@
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900">
 
-  <%# Google Analytics %>
+  
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', '<%= googleAnalyticsId %>', 'auto');
+    ga('create', '', 'auto');
     ga('require', 'displayfeatures');
     ga('send', 'pageview');
   </script>
@@ -48,4 +50,34 @@
 
   <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
-<body class="page-<%= pageId %>">
+<body class="page-index">
+
+
+<div id="particles-js"></div>
+<div class="container">
+
+    <i class="fal fa-user-astronaut"></i>
+
+    <p class="info">
+        I'm <strong>Brayden Lopez</strong> <br />
+        <small>
+            UI/UX Developer <br />
+            DevOps Engineer <br />
+            Full Stack Developer <br />
+        </small>
+    </p>
+
+    <p class="info">
+        <a href="https://github.com/headdetect" class="icon"><i class="fab fa-github-alt"></i></a>
+        <a href="https://www.linkedin.com/in/brayden-lopez/" class="icon"><i class="fab fa-linkedin"></i></a>
+        <a href="https://twitter.com/headdetect" class="icon"><i class="fab fa-twitter"></i></a>
+    </p>
+</div>
+
+
+  <script src="js/bootstrap.js"></script>
+  <script src="js/script-core.js"></script>
+  <script src="js/pages/_index.js"></script>
+</body>
+</html>
+
