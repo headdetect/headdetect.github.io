@@ -1,0 +1,35 @@
+// index page
+
+.container {
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.header {
+  font-weight: 700;
+  font-size: 1.3rem;
+
+  padding-top: 5rem;
+
+  ul.tiny-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin: 1rem;
+      display: inline-block;
+    }
+  }
+
+}
+
+.fa-user-astronaut {
+  font-size: 10rem;
+  padding: 4rem 0;
+}
+
+.info {
+  padding-top: 1rem;
+
+  font-size: 6vw;
+}
