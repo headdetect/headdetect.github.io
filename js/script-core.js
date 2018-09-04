@@ -1,2 +1,2 @@
-const a=document.querySelectorAll("a");for(let b=0;b<a.length;b++)a[b].host!==location.host&&(a[b].setAttribute("target","_blank"),a[b].setAttribute("rel","noopener noreferrer"));
+const a=document.querySelectorAll("a");for(let b=0;b<a.length;b++)a[b].host!==location.host&&(a[b].setAttribute("target","_blank"),a[b].setAttribute("rel","noopener noreferrer"));debugger;"https:"!==location.protocol&&"localhost"!==location.hostname&&(location.href="https:"+window.location.href.substring(window.location.protocol.length));
 //# sourceMappingURL=script-core.js.map
