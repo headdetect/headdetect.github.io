@@ -1,9 +1,13 @@
 // index page
 
-.container {
-  padding: 5rem 1.5rem;
-  text-align: center;
-  max-width: 100%;
+.bash-thing {
+  display: block;
+  margin-top: 2rem;
+  font-size: 3rem;
+
+  @media (min-width: 576px) { 
+    margin-top: 10rem;
+  }
 }
 
 .header {
@@ -25,33 +29,33 @@
 
 }
 
-.fa-user-astronaut {
-  font-size: 13rem;
-  padding: 4rem 0;
-}
-
 .info {
   padding-top: 3rem;
 
-  font-size: 5vw;
-
   strong {
+    color: $link;
+  }
+
+  .intro {
     display: inline-block;
-    background: $link;
-    color: black;
-    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+  }
+
+  ul {
+    font-size: 2rem;
+    font-weight: 300;
+
+    li {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
   }
 }
 
-#particles {
-  z-index: -1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.icons {
+  padding-top: 3rem;
+  font-size: 3rem;
 }
 
 a.icon {
