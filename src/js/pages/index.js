@@ -1,23 +1,14 @@
-const particles = Particles.init({
+/**
+ * WhY wE dOiNg ThIs iF aLl DoMaIns ReDIreCt tO jacoy.dev??
+ *
+ * Because I want to. That way if anyone steals from me
+ * it'll automatically work for them I guess.
+ *
+ * @type {HTMLElement}
+ */
 
-  // normal options
-  selector: '#particles',
-  maxParticles: 100,
-  connectParticles: true,
-  color: '#FFFFFF',
+const domain = document.getElementById('domain');
 
-  responsive: [
-    {
-      breakpoint: 768,
-      options: {
-        maxParticles: 55
-      }
-    },
-    {
-      breakpoint: 425,
-      options: {
-        maxParticles: 30
-      }
-    }
-  ]
-});
+if (domain) {
+  domain.innerText = window.location.hostname;
+}
