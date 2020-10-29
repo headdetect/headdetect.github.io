@@ -1,2 +1,2 @@
-const particles=Particles.init({selector:"#particles",maxParticles:100,connectParticles:!0,color:"#FFFFFF",responsive:[{breakpoint:768,options:{maxParticles:55}},{breakpoint:425,options:{maxParticles:30}}]});
+const domain=document.getElementById("domain");domain&&(domain.innerText=window.location.hostname);
 //# sourceMappingURL=index.js.map
