@@ -56,6 +56,35 @@ h1 {
   margin-bottom: 0.25rem;
 }
 
+.skill-sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #888;
+  padding-left: 0.75rem;
+  border-left: 1px solid #333;
+}
+
+.freelancing {
+  padding: 3rem 0 1rem;
+  border-bottom: 1px solid #222;
+}
+
+.freelancing h2 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.freelance-list {
+  list-style: none;
+}
+
+.freelance-list li {
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+}
+
 a:hover {
   text-decoration: underline;
 }
