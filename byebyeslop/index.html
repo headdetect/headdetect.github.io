@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ByeByeSlop — Production-ready audits for AI-built products</title>
+<meta name="description" content="ByeByeSlop audits vibe-coded apps for the failures that only show up at scale, then fixes them. Observability, security, data integrity, cost, and performance." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="ByeByeSlop — Production-ready audits for AI-built products" />
+<meta property="og:description" content="ByeByeSlop audits vibe-coded apps for the failures that only show up at scale, then fixes them." />
+<meta property="og:url" content="https://jacoy.dev/byebyeslop" />
+<meta name="theme-color" content="#0e0e0e" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --ink: #0e0e0e;
+    --ink-soft: #444444;
+    --muted: #8a8a8a;
+    --line: #e6e6e6;
+    --green: #5ab75a;
+    --green-deep: #3f9a44;
+    --green-tint: #eaf5ea;
+    --teal: #4bb39a;
+    --dark: #0e0e0e;
+    --dark-line: #262626;
+    --shadow: 0 1px 2px rgba(14,14,14,.04), 0 8px 30px rgba(14,14,14,.05);
+    --radius: 16px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+    --maxw: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; background: var(--bg); }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  p { margin: 0 0 1rem; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+
+  a { color: var(--green-deep); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  section { position: relative; }
+
+  .kicker {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+    display: inline-block;
+    margin-bottom: 1.25rem;
+  }
+  .kicker.on-dark { color: var(--green); }
+
+  /* ---------- Header (full width, minimal) ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(250,250,250,.82);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+  .brand {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .brand:hover { text-decoration: none; }
+  .nav-actions { display: flex; align-items: center; gap: clamp(14px, 3vw, 26px); }
+  .nav-email {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .nav-email:hover { color: var(--ink); text-decoration: none; }
+
+  /* ---------- Circular CTA ---------- */
+  .cta-round {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: none;
+  }
+  .cta-round:hover { text-decoration: none; }
+  .cta-round .circle {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    transition: transform .3s var(--ease), background .3s var(--ease);
+    box-shadow: 0 6px 18px rgba(90,183,90,.35);
+  }
+  .cta-round .circle svg { width: 22px; height: 22px; transition: transform .3s var(--ease); }
+  .cta-round:hover .circle { transform: scale(1.06); background: var(--green-deep); }
+  .cta-round:hover .circle svg { transform: translate(3px,-3px); }
+  .cta-round.on-dark { color: #fff; }
+  .cta-round.small .circle { width: 46px; height: 46px; box-shadow: 0 4px 12px rgba(90,183,90,.3); }
+  .cta-round.small .circle svg { width: 18px; height: 18px; }
+  .cta-round.small { font-size: 0.78rem; }
+  @media (max-width: 520px) { .cta-round.small .label { display: none; } }
+
+  /* ---------- Hero (centered, no graphic) ---------- */
+  .hero { padding: 100px 0 104px; text-align: center; overflow: hidden; }
+  .hero-inner { display: flex; flex-direction: column; align-items: center; }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.2rem);
+    font-weight: 700;
+    max-width: 16ch;
+    overflow-wrap: break-word;
+  }
+  .hero .sub { font-size: 1.2rem; color: var(--ink-soft); max-width: 52ch; margin: 1.6rem auto 2.6rem; }
+  .hero .word { display: inline-block; white-space: pre; }
+  .hero .accent-underline { background-image: linear-gradient(transparent 62%, var(--green-tint) 62%); }
+  .hero-cta-row { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .hero-alt { font-size: 0.95rem; color: var(--muted); }
+
+  /* ---------- Generic section spacing ---------- */
+  .section-pad { padding: 92px 0; }
+  .section-head { max-width: 640px; margin-bottom: 52px; }
+  .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .section-head h2 { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 700; }
+  .section-head p { margin-top: 1.1rem; font-size: 1.12rem; }
+
+  /* ---------- Problem ---------- */
+  .problem-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 860px) { .problem-grid { grid-template-columns: 0.9fr 1.1fr; gap: 64px; } }
+  .problem p { font-size: 1.22rem; line-height: 1.6; color: var(--ink); }
+  .problem .lede-mark { color: var(--green-deep); font-weight: 600; }
+
+  /* ---------- Risk cards (compact, visual) ---------- */
+  .risks { background: var(--surface); }
+  .risk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+  }
+  .risk-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px 24px;
+    background: var(--bg);
+    transition: transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .risk-card:hover { transform: translateY(-3px); border-color: var(--green); box-shadow: var(--shadow); }
+  .risk-card .rnum {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 0.85rem;
+    color: var(--green);
+    letter-spacing: 0.05em;
+  }
+  .risk-card h3 { font-size: 1.18rem; font-weight: 600; margin: 0.7rem 0 0.3rem; }
+  .risk-card p { font-size: 0.92rem; color: var(--muted); margin: 0; }
+
+  /* ---------- Dark: what you get ---------- */
+  .dark { background: var(--dark); color: #f2f2f2; }
+  .dark h2, .dark h3 { color: #fff; }
+  .dark p { color: #b9b9b9; }
+  .dark .section-head p { color: #b9b9b9; }
+  .get-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; }
+  @media (min-width: 960px) { .get-grid { grid-template-columns: 1.05fr 0.95fr; gap: 56px; } }
+
+  /* Audit report mockup */
+  .report {
+    background: #151515;
+    border: 1px solid var(--dark-line);
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  }
+  .report-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-bottom: 16px; margin-bottom: 14px;
+  }
+  .report-top .title { font-family:'Space Grotesk',sans-serif; font-weight:600; color:#fff; font-size:.98rem; }
+  .report-top .meta { font-size:.7rem; color:#7d7d7d; letter-spacing:.12em; text-transform:uppercase; }
+  .sev-row {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 11px 0;
+  }
+  .sev-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .sev-name { font-size: .92rem; color: #e4e4e4; font-weight: 500; }
+  .sev-desc { font-size: .78rem; color: #7d7d7d; display: block; font-weight: 400; }
+  .sev-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: #fff;
+    min-width: 28px;
+    text-align: right;
+  }
+  .c-critical { background: #e5484d; }
+  .c-high { background: #f5a524; }
+  .c-medium { background: #4bb39a; }
+  .c-info { background: #6b7280; }
+  .report-bar { display: flex; height: 8px; border-radius: 6px; overflow: hidden; margin-top: 14px; }
+  .report-bar span { display: block; height: 100%; }
+
+  /* Expanded critical finding */
+  .finding {
+    margin-top: 20px;
+    background: #101010;
+    border: 1px solid var(--dark-line);
+    border-left: 3px solid #e5484d;
+    border-radius: 12px;
+    padding: 18px 18px 20px;
+  }
+  .finding-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .pill {
+    font-family:'Space Grotesk',sans-serif;
+    font-size: .62rem; font-weight: 700; letter-spacing: .1em;
+    padding: 3px 8px; border-radius: 6px; color: #fff;
+  }
+  .pill.crit { background: #e5484d; }
+  .finding-loc {
+    font-size: .72rem; color: #9a9a9a;
+    background: #1c1c1c; padding: 3px 9px; border-radius: 6px;
+  }
+  .finding-title { color: #fff; font-weight: 600; font-size: 1.02rem; margin: 0 0 .5rem; line-height: 1.3; }
+  .finding-desc { font-size: .86rem; color: #a9a9a9; margin: 0 0 .9rem; }
+  .finding-fix { font-size: .84rem; color: #cbe8cc; }
+  .finding-fix b {
+    color: var(--green);
+    font-family:'Space Grotesk',sans-serif;
+    font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  /* Comparison table */
+  .cmp { border: 1px solid var(--dark-line); border-radius: var(--radius); overflow: hidden; }
+  .cmp-head {
+    display: grid;
+    grid-template-columns: 1fr 92px 92px;
+    background: #171717;
+  }
+  .cmp-head div { padding: 16px 14px; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:.8rem; letter-spacing:.02em; }
+  .cmp-head .t { color:#fff; }
+  .cmp-head .col { text-align:center; color:#c9c9c9; line-height:1.2; font-size:.72rem; }
+  .cmp-head .col.hl { color: var(--green); background: rgba(90,183,90,.08); }
+  .cmp-row {
+    display: grid;
+    grid-template-columns: 1fr 92px 92px;
+    align-items: stretch;
+  }
+  .cmp-row .feat { padding: 15px 14px; font-size: .92rem; color: #d8d8d8; }
+  .cmp-row .cell { display: grid; place-items: center; padding: 15px 0; }
+  .cmp-row .cell.hl { background: rgba(90,183,90,.08); }
+  .check { width: 22px; height: 22px; display: block; }
+  .check circle { fill: rgba(90,183,90,.14); }
+  .check path {
+    stroke: var(--green);
+    stroke-width: 2.4;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 22;
+    stroke-dashoffset: 22;
+  }
+  .revealed .check path { animation: draw .45s var(--ease) forwards; }
+  .dash { color:#555; text-align:center; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  .foot-note { margin-top: 22px; font-size: .9rem; color: #8f8f8f; max-width: 60ch; }
+
+  /* ---------- How it works ---------- */
+  .step {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    align-items: start;
+  }
+  .step .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.6rem;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+    color: var(--green);
+  }
+  .step h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .35rem; }
+  .step p { margin: 0; }
+
+  /* ---------- Add-ons ---------- */
+  .addons { background: var(--surface); }
+  .addon-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  @media (min-width: 760px) { .addon-grid { grid-template-columns: 1fr 1fr; } }
+  .addon-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 34px 30px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+  .addon-card .glow {
+    position: absolute; width: 180px; height: 180px; border-radius: 50%;
+    filter: blur(50px); opacity: .4; top: -60px; right: -40px;
+    background: radial-gradient(circle, var(--green), transparent 70%);
+  }
+  .addon-card:nth-child(2) .glow { background: radial-gradient(circle, var(--teal), transparent 70%); }
+  .addon-card h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: .8rem; position: relative; }
+  .addon-card p { position: relative; }
+
+  /* ---------- FAQ ---------- */
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 22px 44px 22px 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.12rem;
+    color: var(--ink);
+    cursor: pointer;
+    position: relative;
+    letter-spacing: -0.01em;
+  }
+  .faq-q .ico {
+    position: absolute; right: 4px; top: 50%; transform: translateY(-50%);
+    width: 20px; height: 20px;
+    transition: transform .3s var(--ease);
+  }
+  .faq-q .ico::before, .faq-q .ico::after {
+    content: ""; position: absolute; background: var(--green); border-radius: 2px;
+  }
+  .faq-q .ico::before { width: 100%; height: 2px; top: 9px; left: 0; }
+  .faq-q .ico::after { width: 2px; height: 100%; left: 9px; top: 0; transition: transform .3s var(--ease); }
+  .faq-item.open .faq-q .ico::after { transform: scaleY(0); }
+  .faq-a { overflow: hidden; max-height: 0; transition: max-height .4s var(--ease); }
+  .faq-a-inner { padding: 0 44px 24px 0; }
+  .faq-a-inner p { margin: 0; }
+
+  /* ---------- Final CTA ---------- */
+  .final { background: var(--dark); color: #fff; text-align: center; padding: 110px 0; overflow: hidden; position: relative; }
+  .final .glow {
+    position: absolute; width: 460px; height: 460px; border-radius: 50%;
+    filter: blur(90px); opacity: .28; left: 50%; top: 50%;
+    transform: translate(-50%,-50%);
+    background: radial-gradient(circle, var(--green), transparent 65%);
+  }
+  .final h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; color: #fff; position: relative; }
+  .final .final-cta { display: inline-flex; margin-top: 2.4rem; position: relative; }
+  .final-alt { margin-top: 1.6rem; font-size: .95rem; color: #b9b9b9; position: relative; }
+  .final-alt a { color: #fff; text-decoration: underline; }
+
+  /* ---------- Footer ---------- */
+  footer.site { background: var(--dark); color: #8f8f8f; padding: 34px 0 40px; }
+  .foot {
+    display: flex; flex-direction: column; gap: 14px; align-items: center; text-align: center;
+    padding: 0 clamp(20px, 4vw, 48px);
+  }
+  @media (min-width: 640px) { .foot { flex-direction: row; justify-content: space-between; text-align: left; } }
+  .foot a { color: #cfcfcf; }
+  .foot a:hover { color: #fff; }
+  .foot .back { font-family:'Space Grotesk',sans-serif; font-weight:600; }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: .08s; }
+  .reveal[data-delay="2"] { transition-delay: .16s; }
+  .reveal[data-delay="4"] { transition-delay: .32s; }
+  .reveal[data-delay="5"] { transition-delay: .40s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    .check path { stroke-dashoffset: 0 !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a href="#top" class="brand">ByeByeSlop</a>
+    <div class="nav-actions">
+      <a class="js-email nav-email" href="#">Email</a>
+      <a class="cta-round small" href="https://calendly.com/brayden-jacoy/byebye-discovery" target="_blank" rel="noopener">
+        <span class="label">Let's talk</span>
+        <span class="circle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <span class="kicker">// Vibe Code Audits</span>
+      <h1 id="hero-h1">Your AI-built product works. Now make it <span class="accent-underline">production-ready.</span></h1>
+      <p class="sub reveal" data-delay="4">ByeByeSlop audits vibe-coded apps for the failures that only show up at scale, then fixes them.</p>
+      <div class="reveal hero-cta-row" data-delay="5">
+        <a class="cta-round" href="https://calendly.com/brayden-jacoy/byebye-discovery" target="_blank" rel="noopener">
+          Book a call
+          <span class="circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <span class="hero-alt">or <a class="js-email" href="#">email me</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem section-pad" id="problem">
+    <div class="wrap problem-grid">
+      <div class="reveal">
+        <span class="kicker">// The Problem</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);font-weight:700;">The problem with moving fast</h2>
+      </div>
+      <div class="reveal" data-delay="2">
+        <p>Cursor, Bolt, and Lovable are remarkable, but the code they write has never been paged at 2 AM, never lost a customer's data, and never survived real scale. Most founders don't find out how much is quietly wrong until an enterprise sales call or an incident surfaces it. <span class="lede-mark">ByeByeSlop finds it first.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET (DARK) -->
+  <section class="dark section-pad" id="get">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker on-dark">// What You Get</span>
+        <h2>A structured report you can act on</h2>
+        <p>Every finding is documented, prioritized, and explained in plain language, with two ways to take it forward.</p>
+      </div>
+
+      <div class="get-grid">
+        <!-- Report mockup -->
+        <div class="report reveal" aria-label="Sample audit report">
+          <div class="report-top">
+            <span class="title">Audit Report — Findings</span>
+            <span class="meta">Confidential</span>
+          </div>
+          <div class="sev-row">
+            <span class="sev-dot c-critical"></span>
+            <span class="sev-name">Critical<span class="sev-desc">Immediate risk to data or users</span></span>
+            <span class="sev-count">3</span>
+          </div>
+          <div class="sev-row">
+            <span class="sev-dot c-high"></span>
+            <span class="sev-name">High<span class="sev-desc">Exploitable or scale-breaking</span></span>
+            <span class="sev-count">7</span>
+          </div>
+          <div class="sev-row">
+            <span class="sev-dot c-medium"></span>
+            <span class="sev-name">Medium<span class="sev-desc">Should fix before growth</span></span>
+            <span class="sev-count">12</span>
+          </div>
+          <div class="sev-row">
+            <span class="sev-dot c-info"></span>
+            <span class="sev-name">Informational<span class="sev-desc">Hardening and hygiene</span></span>
+            <span class="sev-count">9</span>
+          </div>
+          <div class="report-bar" aria-hidden="true">
+            <span class="c-critical" style="width:10%"></span>
+            <span class="c-high" style="width:22%"></span>
+            <span class="c-medium" style="width:38%"></span>
+            <span class="c-info" style="width:30%"></span>
+          </div>
+
+          <!-- Expanded critical finding -->
+          <div class="finding">
+            <div class="finding-head">
+              <span class="pill crit">Critical</span>
+              <span class="finding-loc">api/users/search.ts : 37</span>
+            </div>
+            <p class="finding-title">SQL injection via unparameterized query</p>
+            <p class="finding-desc">User-supplied search input is interpolated directly into a raw SQL string. An attacker can read, modify, or drop any table, including other tenants' data.</p>
+            <p class="finding-fix"><b>Fix</b>Use parameterized queries or prepared statements, and never concatenate user input into SQL.</p>
+          </div>
+        </div>
+
+        <!-- Comparison table -->
+        <div>
+          <div class="cmp reveal" data-delay="1">
+            <div class="cmp-head">
+              <div class="t">What's included</div>
+              <div class="col">Audit<br>Only</div>
+              <div class="col hl">Audit +<br>Remediation</div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">Full review across UX, code quality, scalability, and security</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">Structured report: Critical, High, Medium, Informational</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">File and line-level findings with plain-language risk explanations</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">Concrete remediation guidance</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">60-minute debrief call</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">Prompt Ops (.cursorrules, guardrails, purpose-built skills)</div>
+              <div class="cell"><span class="chk"></span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+            <div class="cmp-row">
+              <div class="feat">PR-based fixes for Critical and High findings</div>
+              <div class="cell"><span class="dash">—</span></div>
+              <div class="cell hl"><span class="chk"></span></div>
+            </div>
+          </div>
+          <p class="foot-note reveal" data-delay="2">Remediation scope and cost get set during the debrief. You'll know the full number before any work begins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT VIBE CODE DOESN'T TEACH YOU -->
+  <section class="risks section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// What Vibe Code Doesn't Teach You</span>
+        <p>The parts you skip to move fast are the parts that break at scale.</p>
+      </div>
+      <div class="risk-grid">
+        <div class="risk-card reveal"><span class="rnum">01</span><h3>Observability</h3><p>Blind when it breaks</p></div>
+        <div class="risk-card reveal" data-delay="1"><span class="rnum">02</span><h3>Cost exposure</h3><p>Token bills spike overnight</p></div>
+        <div class="risk-card reveal" data-delay="2"><span class="rnum">03</span><h3>LLM attack surface</h3><p>Prompt injection, data leaks</p></div>
+        <div class="risk-card reveal"><span class="rnum">04</span><h3>Data integrity</h3><p>Silent corruption at scale</p></div>
+        <div class="risk-card reveal" data-delay="1"><span class="rnum">05</span><h3>Performance at scale</h3><p>N+1 queries, missing indexes</p></div>
+        <div class="risk-card reveal" data-delay="2"><span class="rnum">06</span><h3>Dependency risk</h3><p>Unaudited third-party CVEs</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="steps section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// How It Works</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);font-weight:700;">Five steps, no surprises</h2>
+      </div>
+      <div class="reveal" data-delay="1">
+        <div class="step">
+          <span class="num">01</span>
+          <div><h3>Discovery call</h3><p>Describe the stack and I'll tell you if it's a fit.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div><h3>NDA + repo access</h3><p>Standard terms, nothing asymmetric.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div><h3>Audit</h3><p>Five business days, delivered as a structured document.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">04</span>
+          <div><h3>Debrief</h3><p>60 minutes to walk through findings, priority, and next steps.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">05</span>
+          <div><h3>Remediation (optional)</h3><p>PR-based fixes, scoped and priced during the debrief.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADD-ONS -->
+  <section class="addons section-pad">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="kicker">// Add-ons</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);font-weight:700;">Beyond the audit</h2>
+      </div>
+      <div class="addon-grid">
+        <div class="addon-card reveal">
+          <span class="glow" aria-hidden="true"></span>
+          <h3>UX De-Vibing</h3>
+          <p>LLM-generated UIs have tells. Investors and enterprise customers notice. This fixes them before they do.</p>
+        </div>
+        <div class="addon-card reveal" data-delay="1">
+          <span class="glow" aria-hidden="true"></span>
+          <h3>Managed Hosting</h3>
+          <p>Infrastructure, monitoring, backups, and uptime handled for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq section-pad" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="kicker">// FAQ</span>
+        <h2 style="font-size:clamp(2rem,4.4vw,3rem);font-weight:700;">Questions, answered</h2>
+      </div>
+      <div class="faq-list reveal" data-delay="1">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is my project a fit?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Most vibe-coded projects sit somewhere between 0 to 1 and 1 to 100, and that's exactly where I do my best work. I've spent fifteen years taking startups through the growing pains from early growth into enterprise, with a focus on security and scalability. Those are the two areas that quietly break as you grow.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What technologies do you work with?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Languages: TypeScript and JavaScript, Go, Rust, and Ruby. Platforms: Supabase, Vercel, Firebase, and most modern hosting. If your stack is close to these, it's almost certainly a fit.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How long does an audit take?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Usually five business days from repo access to the delivered report. It can shift depending on my current schedule, so I'll give you a firm date on the discovery call.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">How much does it cost?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Every audit is priced per project. We set the number together on the discovery call, before any work begins.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Do you need access to production?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>No. Read-only repo access is enough. I never touch your production environment unless we explicitly scope it.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">What if you don't find anything serious?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>You still get the full report and debrief. A clean bill of health is something you can show customers and investors with confidence.</p></div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">Is my code safe with you?<span class="ico" aria-hidden="true"></span></button>
+          <div class="faq-a"><div class="faq-a-inner"><p>Everything is covered by mutual NDA, and your code isn't retained after the engagement ends.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="ready">
+    <span class="glow" aria-hidden="true"></span>
+    <div class="wrap">
+      <span class="kicker on-dark reveal">// Ready?</span>
+      <h2 class="reveal" data-delay="1">Book a 15-minute discovery call.</h2>
+      <div class="reveal final-cta" data-delay="2">
+        <a class="cta-round on-dark" href="https://calendly.com/brayden-jacoy/byebye-discovery" target="_blank" rel="noopener">
+          Book a call
+          <span class="circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7V16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+      <p class="final-alt reveal" data-delay="2">Prefer email? <a class="js-email" href="#">drop me a line</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="foot">
+    <span>© 2026 &middot; <a class="js-email" data-reveal href="#">email</a></span>
+    <a class="back" href="https://jacoy.dev">← jacoy.dev</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Hero headline word-by-word alignment ---- */
+  var h1 = document.getElementById('hero-h1');
+
+  function splitWords(node) {
+    var result = [];
+    Array.prototype.forEach.call(node.childNodes, function (n) {
+      if (n.nodeType === 3) {
+        n.textContent.split(/(\s+)/).forEach(function (p) {
+          if (p.length === 0) return;
+          if (/^\s+$/.test(p)) { result.push(document.createTextNode(p)); return; }
+          var s = document.createElement('span');
+          s.className = 'word';
+          s.textContent = p;
+          result.push(s);
+        });
+      } else if (n.nodeType === 1) {
+        var s2 = document.createElement('span');
+        s2.className = 'word ' + n.className;
+        s2.textContent = n.textContent;
+        result.push(s2);
+      }
+    });
+    node.innerHTML = '';
+    result.forEach(function (r) { node.appendChild(r); });
+    return result.filter(function (r) { return r.nodeType === 1; });
+  }
+
+  if (!reduce && h1) {
+    var words = splitWords(h1);
+    words.forEach(function (w) {
+      var ox = (Math.random() - 0.5) * 40;
+      var oy = 20 + Math.random() * 16;
+      var rot = (Math.random() - 0.5) * 8;
+      w.style.opacity = '0';
+      w.style.transform = 'translate(' + ox + 'px,' + oy + 'px) rotate(' + rot + 'deg)';
+      w.style.transition = 'opacity .5s var(--ease), transform .5s var(--ease)';
+    });
+    requestAnimationFrame(function () {
+      words.forEach(function (w, idx) {
+        setTimeout(function () {
+          w.style.opacity = '1';
+          w.style.transform = 'translate(0,0) rotate(0deg)';
+        }, 90 + idx * 70);
+      });
+    });
+  }
+
+  /* ---- Assemble email link post-load to dodge scrapers ---- */
+  var addr = 'brayden' + '@' + 'jacoy' + '.' + 'dev';
+  document.querySelectorAll('.js-email').forEach(function (a) {
+    a.href = 'mailto:' + addr;
+    if (a.hasAttribute('data-reveal')) a.textContent = addr;
+  });
+
+  /* ---- Insert checkmark SVGs ---- */
+  document.querySelectorAll('.chk').forEach(function (el) {
+    el.outerHTML = '<svg class="check" viewBox="0 0 24 24" role="img" aria-label="included"><circle cx="12" cy="12" r="11"/><path d="M7 12.5l3.2 3.2L17 8.5"/></svg>';
+  });
+
+  /* ---- Scroll reveals ---- */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+    document.querySelectorAll('.cmp').forEach(function (t) { t.classList.add('revealed'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+
+    var cmpIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); cmpIo.unobserve(e.target); }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.cmp').forEach(function (t) { cmpIo.observe(t); });
+  }
+
+  /* ---- FAQ accordion ---- */
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    var btn = item.querySelector('.faq-q');
+    var panel = item.querySelector('.faq-a');
+    btn.addEventListener('click', function () {
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove('open');
+          other.querySelector('.faq-a').style.maxHeight = null;
+          other.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        panel.style.maxHeight = null;
+        btn.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
